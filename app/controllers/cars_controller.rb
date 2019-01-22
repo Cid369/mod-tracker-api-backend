@@ -29,8 +29,7 @@ class CarsController < ProtectedController
 
   # PATCH/PUT /cars/1
   def update
-    @cars.update(car_params)
-    if @car.update
+    if @car.update(car_params)
       render json: @car
     else
       render json: @car.errors, status: :unprocessable_entity
@@ -47,7 +46,7 @@ class CarsController < ProtectedController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_car
-      @car = current_user.car.find(params[:id])
+      @car = current_user.cars.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
