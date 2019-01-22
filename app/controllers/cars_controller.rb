@@ -1,9 +1,10 @@
 class CarsController < ProtectedController
   before_action :set_car, only: [:show, :update, :destroy]
+  attr_reader :current_user
 
   # GET /cars
   def index
-    @cars = current_user.cars
+    @cars = current_user.cars.find(params[:id])
 
     render json: @cars
   end
@@ -17,7 +18,7 @@ class CarsController < ProtectedController
 
   # POST /cars
   def create
-    @car = current_user.car.new(car_params)
+    @car = current_user.cars.build(car_params)
 
     if @car.save
       render json: @car, status: :created, location: @car
