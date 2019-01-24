@@ -4,7 +4,7 @@ class CarsController < ProtectedController
 
   # GET /cars
   def index
-    @cars = current_user.cars.find(params[:id])
+    @cars = current_user.cars
 
     render json: @cars
   end
