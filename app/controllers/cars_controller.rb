@@ -11,14 +11,14 @@ class CarsController < ProtectedController
 
   # GET /cars/1
   def show
-    @cars = current_user.cars
+    @cars = current_user.car
 
     render json: @car
   end
 
   # POST /cars
   def create
-    @car = current_user.cars.build(car_params)
+    @car = current_user.cars.new(car_params)
 
     if @car.save
       render json: @car, status: :created, location: @car
